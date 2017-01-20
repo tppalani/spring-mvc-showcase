@@ -18,9 +18,8 @@
 	</properties>
 	
 	<scm>
-                <connection>scm:https://github.com/tppalani/spring-mvc-showcase</connection>
-                               
-        </scm>
+          <connection>scm:https://github.com/tppalani/spring-mvc-showcase</connection>
+    </scm>
 	
 		<distributionManagement>
 		<snapshotRepository>
