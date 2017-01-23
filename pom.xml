@@ -6,8 +6,8 @@
 	<groupId>org.springframework.samples</groupId>
 	<artifactId>spring-mvc-showcase</artifactId>
 	<name>spring-mvc-showcase</name>
-	<packaging>war</packaging>
-	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<version>1.0.0-SNAPSHOT</version>
 	
 	<properties>
 		<java-version>1.7</java-version>
@@ -15,23 +15,87 @@
 		<org.springframework.security-version>4.0.1.RELEASE</org.springframework.security-version>
 		<org.aspectj-version>1.8.1</org.aspectj-version>
 		<org.slf4j-version>1.7.12</org.slf4j-version>
+		<mail.version>1.4</mail.version>
+		
+		<MvnRepositoryURL>http://10.250.27.30:8080/nexus/content/groups</MvnRepositoryURL>
+		<distribUrl>http://10.250.27.30:8080/nexus/content/repositories</distribUrl>
+		<RepoUrl>https://github.com/tppalani/spring-mvc-showcase</RepoUrl>
+		
 	</properties>
 	
-	<scm>
-                <connection>scm:https://github.com/tppalani/spring-mvc-showcase</connection>
-    </scm>
 	
+	<scm>
+        <connection>scm:git:https://github.com/tppalani/spring-mvc-showcase</connection>
+        <developerConnection>scm:git:https://github.com/tppalani/spring-mvc-showcase</developerConnection>
+        <tag>0.0.0-SNAPSHOT</tag>
+    </scm>
+		
+		
 		
 	
 	
 	<distributionManagement>
 	<snapshotRepository>
-      <id>nexus-snapshots</id>
-      <url>http://10.250.27.30:8080/nexus/content/groups/public/</url>
+		<id>DeploymentRepo</id>
+		<url>${distribUrl}/snapshots</url>
+		<layout>default</layout>
+		<uniqueVersion>false</uniqueVersion>
 	</snapshotRepository>
+	<repository>
+			<id>DeploymentRepo</id>
+			<url>${distribUrl}/releases</url>
+			<layout>default</layout>
+		</repository>
+	
 	</distributionManagement>
 	
+	
+	
+	
 	<!-- repositories definition -->
+	
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>${MvnRepositoryURL}/public</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>snapshots</id>
+			<url>${MvnRepositoryURL}/public-snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+	</repositories>
+	
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<url>${MvnRepositoryURL}/public</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>snapshots</id>
+			<url>${MvnRepositoryURL}/public-snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+	
+	
+	
+		
+		
+	
+	
+	
 	
 	<dependencies>
 		<!-- Spring -->
@@ -210,6 +274,11 @@
 			<version>1.3</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>${mail.version}</version>
+							</dependency>
 	</dependencies>
 	
 
@@ -258,7 +327,7 @@
 			
 			
 			
-			<plugin>
+			<!--plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
           <version>2.7</version>
@@ -271,7 +340,7 @@
                   </goals>
               </execution>
           </executions>
-      </plugin>
+      </plugin> -->
 
 			  
 
@@ -363,6 +432,34 @@
 					</webApp>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>1.1</version>
+				</plugin>
+				
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
+				
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.3</version>
+				</plugin>
+				
+				
+				
+				<plugin>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
+				
+				<plugin>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
+			
 		</plugins>
 	</build>
 </project>
