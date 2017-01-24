@@ -6,7 +6,7 @@
 	<groupId>org.springframework.samples</groupId>
 	<artifactId>spring-mvc-showcase</artifactId>
 	<name>spring-mvc-showcase</name>
-	<packaging>pom</packaging>
+	<packaging>war</packaging>
 	<version>1.0.0-SNAPSHOT</version>
 	
 	<properties>
